@@ -768,6 +768,13 @@
     .ph-portrait { background: linear-gradient(135deg, #c5bfb5 0%, #b0a89c 100%); }
     .ph-others { background: linear-gradient(135deg, #bfc1bd 0%, #a8aaa6 100%); }
     .ph-medet { background: linear-gradient(135deg, #c2bdb4 0%, #ada69c 100%); }
+
+    /* Contact form placeholder rengi */
+    .contact-form-inner input::placeholder,
+    .contact-form-inner textarea::placeholder { color: rgba(0,0,0,0.4); }
+    input[type=text]::placeholder,
+    input[type=email]::placeholder,
+    textarea::placeholder { color: rgba(0,0,0,0.45) !important; }
   </style>
 </head>
 <body>
@@ -1072,16 +1079,16 @@
     </div>
 
     <!-- Form -->
-    <form onsubmit="handleContact(event)" style="display:flex;flex-direction:column;gap:16px">
-      <input type="text" placeholder="Adınız / Your name" required
-        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.15);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:var(--ink);outline:none"/>
-      <input type="email" placeholder="E-posta / E-mail" required
-        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.15);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:var(--ink);outline:none"/>
-      <textarea rows="4" placeholder="Mesajınız / Your message" required
-        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.15);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:var(--ink);outline:none;resize:none"></textarea>
+    <form action="https://formspree.io/f/mjgajoja" method="POST" style="display:flex;flex-direction:column;gap:16px">
+      <input type="text" name="name" placeholder="Adınız / Your name" required
+        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.25);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#111;outline:none;color-scheme:light"/>
+      <input type="email" name="email" placeholder="E-posta / E-mail" required
+        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.25);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#111;outline:none;color-scheme:light"/>
+      <textarea rows="4" name="message" placeholder="Mesajınız / Your message" required
+        style="width:100%;padding:14px 0;border:none;border-bottom:1px solid rgba(0,0,0,0.25);background:transparent;font-family:'Jost',sans-serif;font-size:0.9rem;font-weight:300;color:#111;outline:none;resize:none;color-scheme:light"></textarea>
       <button type="submit"
-        style="align-self:flex-start;margin-top:8px;padding:14px 36px;background:var(--ink);color:#fff;font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:none;transition:background 0.2s"
-        onmouseover="this.style.background='#333'" onmouseout="this.style.background='var(--ink)'">
+        style="align-self:flex-start;margin-top:8px;padding:14px 36px;background:#111;color:#fff;font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;border:none;transition:background 0.2s"
+        onmouseover="this.style.background='#333'" onmouseout="this.style.background='#111'">
         Gönder / Send
       </button>
     </form>
