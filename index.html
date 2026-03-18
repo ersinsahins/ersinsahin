@@ -674,6 +674,8 @@
       transform: scale(1.05);
       filter: brightness(0.85);
     }
+    .aphasia-grid-item.portrait { aspect-ratio: unset; }
+    .aphasia-grid-item.portrait img { height: auto; object-fit: unset; }
 
     @media (max-width: 900px) {
       .aphasia-text-block { padding: 64px 24px; }
@@ -719,18 +721,27 @@
     }
     .auto-grid-item {
       position: relative;
-      aspect-ratio: 3/2;
       overflow: hidden;
       cursor: pointer;
       background: #1a1a1a;
+      aspect-ratio: 3/2;
+    }
+    .auto-grid-item.portrait {
+      aspect-ratio: unset;
     }
     .auto-grid-item img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
       transition: transform 0.5s var(--ease), filter 0.4s;
       user-select: none;
       -webkit-user-drag: none;
       pointer-events: none;
+    }
+    .auto-grid-item.portrait img {
+      height: auto;
+      object-fit: unset;
     }
     .auto-grid-item:hover img { transform: scale(1.04); filter: brightness(0.88); }
 
@@ -1135,6 +1146,9 @@ async function buildGrid(section) {
       const img = document.createElement('img');
       img.src = p.src; img.alt = p.alt; img.loading = 'lazy';
       img.onerror = () => div.style.display = 'none';
+      img.onload = function() {
+        if (this.naturalHeight > this.naturalWidth) div.classList.add('portrait');
+      };
       div.appendChild(img); grid.appendChild(div);
     });
     return;
@@ -1163,6 +1177,11 @@ async function buildGrid(section) {
     div.onclick = () => openLightbox(i + 1, section); // +1 çünkü 0 = hero
     const img = document.createElement('img');
     img.src = p.src; img.alt = p.alt; img.loading = 'lazy';
+    img.onload = function() {
+      if (this.naturalHeight > this.naturalWidth) {
+        div.classList.add('portrait');
+      }
+    };
     div.appendChild(img); grid.appendChild(div);
   });
 }
